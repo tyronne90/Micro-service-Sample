@@ -1,5 +1,0 @@
-package com.library.subclassification.repository;
-
-public interface MainClassificationRepository {
-
-}
