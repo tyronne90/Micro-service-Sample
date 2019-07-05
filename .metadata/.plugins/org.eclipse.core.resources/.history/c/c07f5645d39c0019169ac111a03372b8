@@ -1,0 +1,9 @@
+package com.library.subclassification.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.library.subclassification.entity.SubClassification;
+
+public interface SubClassificationReposotory extends JpaRepository<SubClassification, Long> {
+	List<SubClassification> findSubClassificationBySubClassId(Long subClassId);
+}

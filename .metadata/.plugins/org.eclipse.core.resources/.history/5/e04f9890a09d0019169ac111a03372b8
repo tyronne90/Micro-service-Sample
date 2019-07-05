@@ -1,0 +1,26 @@
+package com.library.subclassification.entity;
+
+import java.util.List;
+
+public class SubClassificationList {
+	private Long mainClassId;
+	private List<SubClassification> subClass;
+	public Long getMainClassId() {
+		return mainClassId;
+	}
+	public void setMainClassId(Long mainClassId) {
+		this.mainClassId = mainClassId;
+	}
+	public List<SubClassification> getSubClass() {
+		return subClass;
+	}
+	public void setSubClass(List<SubClassification> subClass) {
+		this.subClass = subClass;
+	}
+	
+	
+
+
+
+	
+}
