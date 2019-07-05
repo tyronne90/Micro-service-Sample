@@ -1,9 +1,6 @@
 package com.library.subclassification.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -104,14 +101,11 @@ public class SubClassificationController {
 		return subClassService.getAllSubClass();
 	}
 
-	
 	@GetMapping("/GetSubClassification/{subClassId}")
 	public SubClassification getAllMainClassOne(@PathVariable("subClassId") Long subClassId) {
 		return subClassService.getSubClassificationBySubClassId(subClassId);
 	}
 	
-
-	//
 	@RequestMapping("/GetAllMainClassification")
 	public List<MainClassification> getAllMainClassList() {
 		RestTemplate restTemplate = new RestTemplate();
@@ -123,16 +117,18 @@ public class SubClassificationController {
 		return mainClass;
 	}
 	
-	
 	@PostMapping("/SaveMainClassification")
 	public ResponseEntity<Void> saveMainClassification(@RequestBody List<MainClassification> mainClass) {
 		subClassService.saveMainClass(mainClass);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
+	@PostMapping("/SaveMainClassificationTable")
+	public ResponseEntity<Void> saveMainClassificationTable(@RequestBody List<MainClassification> mainClass) {
+		subClassService.saveMainClassificationInTable(mainClass);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
 	
-	
-
 	@RequestMapping("/GetMainClassificationById/{mainClassId}")
 	public List<MainClassification> MainClassificationOneList(@PathVariable("mainClassId") Long mainClassId) {
 		RestTemplate restTemplate = new RestTemplate();

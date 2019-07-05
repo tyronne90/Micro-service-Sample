@@ -9,5 +9,5 @@ import com.library.subclassification.entity.SubClassification;
 
 public interface SubClassificationReposotory extends JpaRepository<SubClassification, Long> {
 	SubClassification findSubClassificationBySubClassId(Long subClassId);
-	void save(List<MainClassification> mainClass);
+	List<MainClassification> save(List<MainClassification> mainClass);
 }

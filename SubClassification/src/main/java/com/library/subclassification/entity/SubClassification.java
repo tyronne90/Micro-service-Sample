@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(schema = "libraryMicroServiceSubClassification", name = "subclass")
+@Table(schema = "library_micro_service_sub_classification", name = "subclass")
 public class SubClassification implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

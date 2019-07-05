@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.library.subclassification.entity.MainClassification;
 
 public interface MainClassificationRepository extends JpaRepository<MainClassification, Long> {
-	void save(List<MainClassification> mainClass);
+	List<MainClassification> save(List<MainClassification> mainClass);
 }

@@ -3,8 +3,6 @@ package com.library.subclassification.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,11 +66,17 @@ public class SubClassificationServiceImplement implements SubClassificationServi
 			temp.add(emp);
 			
 			if ((counter + 1) % 500 == 0 || (counter + 1) == size) {
-				mainClassRepo.save(temp);
+			mainClassRepo.saveAll(mainClass);
 				temp.clear();
 			}
 			counter++;
 		}
+	}
+
+	@Override
+	public List<MainClassification> saveMainClassificationInTable(List<MainClassification> mainClass) {
+		return mainClassRepo.saveAll(mainClass);
+		
 	}
 	
 }

@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(schema = "libraryMicroServiceSubClassification", name = "mainclass")
+@Table(schema = "library_micro_service_main_classification", name = "mainclass")
 public class MainClassification implements Serializable {
 
 	@Id
