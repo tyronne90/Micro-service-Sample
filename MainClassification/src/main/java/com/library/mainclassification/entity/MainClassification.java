@@ -19,6 +19,17 @@ public class MainClassification implements Serializable {
 	private String mainClassName;
 
 
+	
+
+	public MainClassification() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public MainClassification(Long mainClassId) {
+		super();
+		this.mainClassId = mainClassId;
+	}
 
 	public Long getMainClassId() {
 		return mainClassId;

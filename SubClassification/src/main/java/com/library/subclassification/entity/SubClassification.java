@@ -15,24 +15,42 @@ public class SubClassification implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long subClassId;
 	private String subClassName;
-    private Long mainClass;
+    private Long mainClassId;
     
 
 	public SubClassification() {
 		super();
 	}
 
-	public Long getMainClass() {
-		return mainClass;
+	
+	
+
+	public SubClassification(Long mainClassId) {
+		this.mainClassId = mainClassId;
 	}
 
 
 
 
-	public void setMainClass(Long mainClass) {
-		this.mainClass = mainClass;
+	public SubClassification(Long subClassId, String subClassName, Long mainClassId) {
+		super();
+		this.subClassId = subClassId;
+		this.subClassName = subClassName;
+		this.mainClassId = mainClassId;
 	}
 
+
+
+
+	public Long getMainClassId() {
+		return mainClassId;
+	}
+
+
+
+	public void setMainClassId(Long mainClassId) {
+		this.mainClassId = mainClassId;
+	}
 
 
 

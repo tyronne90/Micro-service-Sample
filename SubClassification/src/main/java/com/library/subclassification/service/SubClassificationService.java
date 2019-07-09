@@ -15,4 +15,13 @@ public interface SubClassificationService {
 	void saveMainClass(List<MainClassification> mainClass);
 	
 	List<MainClassification> saveMainClassificationInTable(List<MainClassification> mainClass);
+
+	List<MainClassification> getAllMainClass();
+	List<SubClassification> getAllMainClassId();
+	List<SubClassification> getAllSubClassId();
+	
+//	List<SubClassificationList> getAllSubClassificationList();
+	
+	
+	
 }

@@ -3,7 +3,7 @@ package com.library.subclassification.entity;
 public class SubClassificationList {
 	private Long subClassId;
 	private String subClassName;
-//	private Long mainClassId;
+	private Long mainClassId;
 //	private List<MainClassification> mainClass;
 	private MainClassification mainClassObj;
 	
@@ -21,6 +21,12 @@ public class SubClassificationList {
 	}
 	public String getSubClassName() {
 		return subClassName;
+	}
+	public Long getMainClassId() {
+		return mainClassId;
+	}
+	public void setMainClassId(Long mainClassId) {
+		this.mainClassId = mainClassId;
 	}
 	public void setSubClassName(String subClassName) {
 		this.subClassName = subClassName;

@@ -1,5 +1,7 @@
 package com.library.mainclassification.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.validation.Valid;
 
@@ -26,6 +28,30 @@ public class MainClassificationController {
 	public HttpStatus saveMainClass(@Valid @RequestBody MainClassification mainClass) {
 		mainClassificationService.save(mainClass);
 		return HttpStatus.CREATED;
+	}
+
+	@PostMapping("/GetMainClassificationId")
+	public List<MainClassification> GetAllMainClassIdFromSubClassService(@Valid @RequestBody List<Object> mainClass) {
+	
+		int length = mainClass.size();
+//		System.out.print(length);
+//		List<MainClassification> getMainId = new ArrayList<MainClassification>();
+		List<MainClassification> retrievedMainClass = new ArrayList<MainClassification>();
+		for(int i=0; i<length; i++) {
+//			getMainId.add(mainClass.get(i));
+			Long mainClassId = Long.parseLong(String.valueOf(mainClass.get(i)));
+//			Long mainClassId = mainClass.get(i);
+			System.out.println(mainClass.get(i));
+			MainClassification returnMainClassObj = mainClassificationService.getMainClassificationById(mainClassId);
+		retrievedMainClass.add(returnMainClassObj);
+		
+		}
+		
+	
+		
+		
+		
+		return retrievedMainClass;
 	}
 
 	@GetMapping("/GetAllMainClassification")

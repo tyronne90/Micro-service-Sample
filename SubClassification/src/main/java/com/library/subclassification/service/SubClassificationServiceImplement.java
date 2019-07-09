@@ -19,6 +19,10 @@ public class SubClassificationServiceImplement implements SubClassificationServi
 	
 	@Autowired
 	MainClassificationRepository mainClassRepo;
+	
+//	@Autowired
+//	SubClassificationListRepository subClassificationListRepo;
+//	
 
 	@Override
 	public SubClassification getSubClassificationBySubClassId(Long subClassId) {
@@ -76,7 +80,27 @@ public class SubClassificationServiceImplement implements SubClassificationServi
 	@Override
 	public List<MainClassification> saveMainClassificationInTable(List<MainClassification> mainClass) {
 		return mainClassRepo.saveAll(mainClass);
-		
 	}
+
+	@Override
+	public List<SubClassification> getAllMainClassId() {
+		return subClassificationRepository.getAllMainClassId();
+//		return null;
+	}
+
+	@Override
+	public List<MainClassification> getAllMainClass() {
+		return mainClassRepo.findAll();
+	}
+
+	@Override
+	public List<SubClassification> getAllSubClassId() {
+		return subClassificationRepository.getAllSubClassId();
+	}
+
+//	@Override
+//	public List<SubClassificationList> getAllSubClassificationList() {
+//		return subClassificationListRepo.findAll();
+//	}
 	
 }
