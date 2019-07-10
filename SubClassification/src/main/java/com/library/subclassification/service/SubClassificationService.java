@@ -6,22 +6,23 @@ import com.library.subclassification.entity.MainClassification;
 import com.library.subclassification.entity.SubClassification;
 
 public interface SubClassificationService {
+	// Get All SubClassification By Id
 	SubClassification getSubClassificationBySubClassId(Long subClassId);
-//	SubClassification save(SubClassification subClass);
+	// Save SubClassification
+	SubClassification save(SubClassification subClass);
+	// List All SubClassification
 	List<SubClassification> getAllSubClass();
-//	SubClassification deleteSubClassificationById(Long subClassId);
-//	void updateSubClassification(SubClassification subClass);
+	// Delete SubClassification
+	SubClassification deleteSubClassificationById(Long subClassId);
+	// Update SubClassification
+	void updateSubClassification(SubClassification subClass);
 
+	//Save MainClassification into mainClassification table
 	void saveMainClass(List<MainClassification> mainClass);
-	
 	List<MainClassification> saveMainClassificationInTable(List<MainClassification> mainClass);
 
 	List<MainClassification> getAllMainClass();
 	List<SubClassification> getAllMainClassId();
 	List<SubClassification> getAllSubClassId();
-	
-//	List<SubClassificationList> getAllSubClassificationList();
-	
-	
 	
 }

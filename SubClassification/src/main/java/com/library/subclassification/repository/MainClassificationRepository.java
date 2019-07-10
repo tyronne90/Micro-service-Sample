@@ -7,11 +7,4 @@ import com.library.subclassification.entity.MainClassification;
 
 public interface MainClassificationRepository extends JpaRepository<MainClassification, Long> {
 	List<MainClassification> save(List<MainClassification> mainClass);
-	
-//	String fetchAllMainClassId = "SELECT m.main_class_id FROM subclass m";
-//	@Query(value = fetchAllMainClassId, nativeQuery=true)
-//	<T> List<T> getAllMainClassId();
-//	
-//	
-	
 }

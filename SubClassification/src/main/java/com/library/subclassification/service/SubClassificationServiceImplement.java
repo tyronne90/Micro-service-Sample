@@ -20,45 +20,42 @@ public class SubClassificationServiceImplement implements SubClassificationServi
 	@Autowired
 	MainClassificationRepository mainClassRepo;
 	
-//	@Autowired
-//	SubClassificationListRepository subClassificationListRepo;
-//	
-
+	// Find SubClassification By Id
 	@Override
 	public SubClassification getSubClassificationBySubClassId(Long subClassId) {
 		return subClassificationRepository.findSubClassificationBySubClassId(subClassId);
 	}
 
-//	@Override
-//	public List<SubClassification> getSubClassificationBySubClassId(Long subClassId) {
-////		return subClassificationRepository.findSubClassificationBySubClassId(subClassId);
-//	}
-//
-//	@Override
-//	public SubClassification save(SubClassification subClass) {
-////		return subClassificationRepository.save(subClass);
-//	}
-//
+	//	Save SubClassifiaction 
+	@Override
+	public SubClassification save(SubClassification subClass) {
+		return subClassificationRepository.save(subClass);
+	}
+	
+	//	Get All SubClassification List
 	@Override
 	public List<SubClassification> getAllSubClass() {
 		return subClassificationRepository.findAll();
 	}
-//
-//	@Override
-//	public SubClassification deleteSubClassificationById(Long subClassId) {
-////		subClassificationRepository.deleteById(subClassId);
-//		return null;
-//	}
-//
-//	@Override
-//	public void updateSubClassification(SubClassification subClass) {
-////		Long subClassId = subClass.getSubClassId();
-////		boolean isExist = subClassificationRepository.findSubClassificationBySubClassId(subClassId) != null;
-////		if (isExist) {
-////			subClassificationRepository.save(subClass);
-////		}
-//	}
 
+	//	Delete SubClassifcation 
+	@Override
+	public SubClassification deleteSubClassificationById(Long subClassId) {
+		subClassificationRepository.deleteById(subClassId);
+		return null;
+	}
+
+	//	Update SubClassification
+	@Override
+	public void updateSubClassification(SubClassification subClass) {
+		Long subClassId = subClass.getSubClassId();
+		boolean isExist = subClassificationRepository.findSubClassificationBySubClassId(subClassId) != null;
+		if (isExist) {
+			subClassificationRepository.save(subClass);
+		}
+	}
+
+	//	Save MainClassification into SubClassification table get from MainClassification table -> 8082 <-> 8081
 	@Override
 	public void saveMainClass(List<MainClassification> mainClass) {
 		int size = mainClass.size();
@@ -77,6 +74,8 @@ public class SubClassificationServiceImplement implements SubClassificationServi
 		}
 	}
 
+	
+	
 	@Override
 	public List<MainClassification> saveMainClassificationInTable(List<MainClassification> mainClass) {
 		return mainClassRepo.saveAll(mainClass);
@@ -85,22 +84,18 @@ public class SubClassificationServiceImplement implements SubClassificationServi
 	@Override
 	public List<SubClassification> getAllMainClassId() {
 		return subClassificationRepository.getAllMainClassId();
-//		return null;
 	}
 
+	//	Get All MainClassification
 	@Override
 	public List<MainClassification> getAllMainClass() {
 		return mainClassRepo.findAll();
 	}
 
+	//	Get all subClassification Id
 	@Override
 	public List<SubClassification> getAllSubClassId() {
 		return subClassificationRepository.getAllSubClassId();
 	}
-
-//	@Override
-//	public List<SubClassificationList> getAllSubClassificationList() {
-//		return subClassificationListRepo.findAll();
-//	}
 	
 }
