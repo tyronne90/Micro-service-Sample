@@ -19,7 +19,12 @@ public interface SubClassificationService {
 
 	//Save MainClassification into mainClassification table
 	void saveMainClass(List<MainClassification> mainClass);
+	
+	
 	List<MainClassification> saveMainClassificationInTable(List<MainClassification> mainClass);
+	
+	//Save SubClassification bulk
+	void saveSubClassificationInTable(List<SubClassification> subClass);
 
 	List<MainClassification> getAllMainClass();
 	List<SubClassification> getAllMainClassId();

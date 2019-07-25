@@ -28,6 +28,9 @@ import com.library.subclassification.service.SubClassificationService;
 public class SubClassificationController {
 	@Autowired
 	SubClassificationService subClassService;
+	
+	@Autowired
+	RestTemplate restTemplate;
 
 //	@RequestMapping("/mainClass/{mainClassId}")
 //    public MainClassification getMainClassification(@PathVariable("mainClassId") Long mainClassId) {
@@ -65,11 +68,15 @@ public class SubClassificationController {
 		subClassificationList.setSubClassName(subClassification.getSubClassName());
 		subClassificationList.setMainClassId(subClassification.getMainClassId());
 
-		RestTemplate restTemplate = new RestTemplate();
+//		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<MainClassification> response = restTemplate.exchange(
-				"http://localhost:8081/librarysystem/GetAllMainClassificationOne/" + subClassification.getMainClassId(),
+				"http://mainclassification/librarysystem/GetAllMainClassificationOne/" + subClassification.getMainClassId(),
 				HttpMethod.GET, null, new ParameterizedTypeReference<MainClassification>() {
 				});
+//		ResponseEntity<MainClassification> response = restTemplate.exchange(
+//				"http://localhost:8081/librarysystem/GetAllMainClassificationOne/" + subClassification.getMainClassId(),
+//				HttpMethod.GET, null, new ParameterizedTypeReference<MainClassification>() {
+//				});
 		MainClassification mainClass = response.getBody();
 		subClassificationList.setMainClassObj(mainClass);
 		return subClassificationList;
@@ -187,7 +194,7 @@ public class SubClassificationController {
 
 	
 // Get All MainClassification List from MainClassification Service -> 8081
-	@RequestMapping("/GetAllMainClassification")
+	@GetMapping("/GetAllMainClassificationFromSubClass")
 	public List<MainClassification> getAllMainClassList() {
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<List<MainClassification>> response = restTemplate.exchange(
@@ -217,16 +224,26 @@ public class SubClassificationController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
-	//	
+	//	Save MainClassification Table Bulk
 	@PostMapping("/SaveMainClassificationTable")
 	public ResponseEntity<Void> saveMainClassificationTable(@RequestBody List<MainClassification> mainClass) {
 		subClassService.saveMainClassificationInTable(mainClass);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
+	
+//	Save MainClassification Table Bulk
+	@PostMapping("/SaveSubClassificationTable")
+	public ResponseEntity<Void> saveSubClassificationTable(@RequestBody List<SubClassification> subClass) {
+		subClassService.saveSubClassificationInTable(subClass);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	
 
 	//	Get MainClassification IDs from MainClassification Service -> 8081
-	@RequestMapping("/GetMainClassificationById/{mainClassId}")
+	@GetMapping("/GetMainClassificationByIdFromSubClass/{mainClassId}")
 	public List<MainClassification> MainClassificationOneList(@PathVariable("mainClassId") Long mainClassId) {
+		try {
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<List<MainClassification>> response = restTemplate.exchange(
 				"http://localhost:8081/librarysystem/GetAllMainClassification", HttpMethod.GET, null,
@@ -234,6 +251,11 @@ public class SubClassificationController {
 				});
 		List<MainClassification> mainClass = response.getBody();
 		return mainClass;
+		}
+		catch(Exception ex) {
+			System.out.print("Exception -> "+ ex.getMessage());
+		}
+		return null;
 	}
 
 }

@@ -97,5 +97,24 @@ public class SubClassificationServiceImplement implements SubClassificationServi
 	public List<SubClassification> getAllSubClassId() {
 		return subClassificationRepository.getAllSubClassId();
 	}
+
+
+	@Override
+	public void saveSubClassificationInTable(List<SubClassification> subClass) {
+		int size = subClass.size();
+		int counter = 0;
+		
+		List<SubClassification> temp = new ArrayList<>();
+		
+		for (SubClassification emp : subClass) {
+			temp.add(emp);
+			
+			if ((counter + 1) % 500 == 0 || (counter + 1) == size) {
+			subClassificationRepository.saveAll(subClass);
+				temp.clear();
+			}
+			counter++;
+		}
+	}
 	
 }

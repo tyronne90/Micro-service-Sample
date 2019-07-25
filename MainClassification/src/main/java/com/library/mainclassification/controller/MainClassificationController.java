@@ -1,10 +1,11 @@
 package com.library.mainclassification.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import javax.validation.Valid;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.library.mainclassification.entity.MainClassification;
 import com.library.mainclassification.service.MainClassificationService;
 
@@ -23,11 +23,19 @@ import com.library.mainclassification.service.MainClassificationService;
 public class MainClassificationController {
 	@Autowired
 	MainClassificationService mainClassificationService;
+	
+	private static Logger logger = LogManager.getLogger(MainClassification.class);
 
 	@PostMapping("/SaveMainClassification")
 	public HttpStatus saveMainClass(@Valid @RequestBody MainClassification mainClass) {
+		try {
 		mainClassificationService.save(mainClass);
 		return HttpStatus.CREATED;
+		}catch(Exception ex) {
+//			System.out.println("Exception -> "+ ex.getMessage());
+			logger.error("Controller Exception:-> " +  ex.getMessage());
+		}
+		return null;
 	}
 
 	@PostMapping("/GetMainClassificationId")
@@ -46,10 +54,7 @@ public class MainClassificationController {
 		retrievedMainClass.add(returnMainClassObj);
 		
 		}
-		
-	
-		
-		
+
 		
 		return retrievedMainClass;
 	}
